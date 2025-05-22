@@ -6,11 +6,11 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:36:43 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/20 16:49:32 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:42:11 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/flood_fill.h"
+#include "flood_fill.h"
 
 char	**ft_copy_map(char **map)
 {
@@ -53,14 +53,14 @@ void	ft_free_map(char **map)
 }
 
 
-void	ft_flood_fill(char **map, int x, int y)
+void	ft_flood_fill(char **map, int row, int col)
 {
-	if (map[y][x] == '1' || map[y][x] == 'F')
+	if (map[row][col] == '1' || map[row][col] == 'F')
 		return ;
-	map[y][x] = 'F';
+	map[row][col] = 'F';
 
-	ft_flood_fill(map, x + 1, y);
-	ft_flood_fill(map, x - 1, y);
-	ft_flood_fill(map, x, y + 1);
-	ft_flood_fill(map, x, y - 1);
+	ft_flood_fill(map, row + 1, col);
+	ft_flood_fill(map, row - 1, col);
+	ft_flood_fill(map, row, col + 1);
+	ft_flood_fill(map, row, col - 1);
 }

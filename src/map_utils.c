@@ -6,11 +6,11 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:56:07 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/20 16:30:50 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:11:59 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/map.h"
+#include "map.h"
 
 int	ft_is_valid_rectangular(char **map)
 {

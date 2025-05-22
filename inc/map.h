@@ -6,16 +6,16 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:38:54 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/20 15:59:34 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:14:13 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
 
-# include "libft_extended/inc/libft.h"
-# include "libft_extended/inc/ft_printf.h"
-# include "libft_extended/inc/get_next_line.h"
+# include "libft.h"
+# include "ft_printf.h"
+# include "get_next_line.h"
 # include <fcntl.h>
 # include <stdio.h>
 
