@@ -6,11 +6,11 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:30:23 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/22 15:52:48 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:59:03 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "flood_fill.h"
+#include "so_long.h"
 
 int	ft_find_player(char **map, int *x, int *y)
 {
@@ -58,7 +58,7 @@ int	ft_check_remaining(char **map)
 	return (1);
 }
 
-int ft_is_path_valid(char **map)
+int	ft_is_path_valid(char **map)
 {
 	char	**map_cpy;
 	int		row;

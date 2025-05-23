@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/23 14:24:49 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/23 17:03:13 by vpushkar         ###   ########.fr       */
+/*   Created: 2025/05/23 13:52:55 by vpushkar          #+#    #+#             */
+/*   Updated: 2025/05/23 17:48:20 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "so_long.h"
 
-void	ft_render_map(t_game *game)
+int	main(void)
 {
-	int	i;
+	t_game	*game;
+	char	**map;
 
-	i = 0;
-	while (game->map[i])
+	game = ft_calloc(1, sizeof(t_game));
+	map = ft_read_map("maps/map1.ber");
+	if (!map)
 	{
-		printf("%s", game->map[i]);
-		free(game->map[i]);
-		i++;
+		fprintf(stderr, "Failed to read map.\n");
+		return (1);
 	}
-	free(game->map);
+	if (ft_validate_map(map))
+	{
+		return (1);
+	}
+	// ft_render_map(map);
+	ft_game_init(game);
+	return (0);
 }

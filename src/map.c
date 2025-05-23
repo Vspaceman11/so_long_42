@@ -6,12 +6,11 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:38:03 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/22 17:04:48 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:59:45 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
-#include "flood_fill.h"
+#include "so_long.h"
 
 int	ft_validate_map(char **map)
 {
@@ -92,30 +91,4 @@ char	**ft_read_map(const char *file)
 	close(fd);
 	return (map);
 }
-#include <stdio.h>
-#include <stdlib.h>
 
-int	main(void)
-{
-	char	**map;
-	int		i = 0;
-
-	map = ft_read_map("maps/map1.ber");
-	if (!map)
-	{
-		fprintf(stderr, "Failed to read map.\n");
-		return (1);
-	}
-	if (ft_validate_map(map))
-	{
-		return (1);
-	}
-	while (map[i])
-	{
-		printf("%s", map[i]);
-		free(map[i]);
-		i++;
-	}
-	free(map);
-	return (0);
-}

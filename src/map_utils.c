@@ -6,11 +6,11 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:56:07 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/22 15:11:59 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:56:08 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "so_long.h"
 
 int	ft_is_valid_rectangular(char **map)
 {
@@ -103,4 +103,23 @@ int	ft_has_required_elements(char **map)
 		i++;
 	}
 	return (p_count == 1 && e_count == 1 && c_count >= 1);
+}
+
+void	ft_map_size(t_game *game)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (game->map[y])
+	{
+		x = 0;
+		while (game->map[y][x])
+		{
+			x++;
+			game->map_row = x;
+		}
+		y++;
+		game->map_col = y;
+	}
 }
