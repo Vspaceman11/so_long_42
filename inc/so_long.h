@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:47:46 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/27 17:17:28 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:41:36 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,20 @@ typedef struct s_textures
 {
 	mlx_texture_t	*player_texture;
 	mlx_texture_t	*wall_texture;
-	mlx_texture_t	*floor_tx_c;
-	mlx_texture_t	*floor_tx_tl;
-	mlx_texture_t	*floor_tx_tr;
-	mlx_texture_t	*floor_tx_bl;
-	mlx_texture_t	*floor_tx_br;
-	mlx_texture_t	*floor_tx_top;
-	mlx_texture_t	*floor_tx_b;
-	mlx_texture_t	*floor_tx_l;
-	mlx_texture_t	*floor_tx_r;
+	mlx_texture_t	*floor_texture;
+	// mlx_texture_t	*floor_tx_c;
+	// mlx_texture_t	*floor_tx_tl_w;
+	// mlx_texture_t	*floor_tx_tl_f;
+	// mlx_texture_t	*floor_tx_tr_w;
+	// mlx_texture_t	*floor_tx_tr_f;
+	// mlx_texture_t	*floor_tx_bl_w;
+	// mlx_texture_t	*floor_tx_bl_f;
+	// mlx_texture_t	*floor_tx_br_w;
+	// mlx_texture_t	*floor_tx_br_f;
+	// mlx_texture_t	*floor_tx_top;
+	// mlx_texture_t	*floor_tx_b;
+	// mlx_texture_t	*floor_tx_l;
+	// mlx_texture_t	*floor_tx_r;
 	mlx_texture_t	*collectible_texture;
 	mlx_texture_t	*exit_texture;
 }	t_textures;
@@ -70,6 +75,9 @@ typedef struct s_game
 	int				map_col;
 	int				player_x;
 	int				player_y;
+	int				player_moves;
+	int				player_instance_idx;
+	int				col_remaining;
 }	t_game;
 
 // ========== FUNCTION PROTOTYPES ==========
@@ -100,12 +108,16 @@ void	ft_game_init(t_game *game);
 // void	ft_load_textures(t_game *game);
 // void	ft_hook_controls(t_game *game);
 
+// hooks.c
+void	ft_handle_input(void *param);
+void	ft_player_move(t_game *game, int dx, int dy);
+
 // render.c
 void			ft_render_map(t_game *game);
-void			init_textures(t_game *game);
-int				get_tile_mask(t_game *game, int row, int col);
-mlx_texture_t	*get_ground_texture(t_game *game, int mask);
-void			delete_tx(t_textures *tx);
+// void			init_textures(t_game *game);
+// int				get_tile_mask(t_game *game, int row, int col);
+// mlx_texture_t	*get_ground_texture(t_game *game, int mask);
+// void			delete_tx(t_textures *tx);
 
 // utils.c (если есть)
 // void	print_error(const char *msg);
