@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:52:55 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/23 17:48:20 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:58:49 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(void)
 {
 	t_game	*game;
 	char	**map;
-
 	game = ft_calloc(1, sizeof(t_game));
 	map = ft_read_map("maps/map1.ber");
 	if (!map)
