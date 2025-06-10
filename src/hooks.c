@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:59:26 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/09 17:54:05 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:11:34 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	ft_handle_input(void *param)
 {
 	t_game *game;
-	static int	frame_count = 0;
 
 	game = (t_game *)param;
-	if (++frame_count < 10)
+	game->frame_count++;
+	if (game->frame_count < game->input_cooldown)
 		return ;
-	frame_count = 0;
+	game->frame_count = 0;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W) || mlx_is_key_down(game->mlx, MLX_KEY_UP))
@@ -35,14 +35,17 @@ void	ft_handle_input(void *param)
 
 void	ft_player_move(t_game *game, int dx, int dy)
 {
-	int		new_x;
-	int		new_y;
-	char	tile;
+	int				new_x;
+	int				new_y;
+	char			tile;
+	mlx_instance_t	*inst;
+	size_t			i;
 
 	new_x = game->player_x + dx;
 	new_y = game->player_y + dy;
 	if (new_x < 0 || new_y < 0 || new_y >= game->map_col || new_x >= game->map_row)
 		return;
+	i = 0;
 	tile = game->map[new_y][new_x];
 	if (tile == '1')
 		return ;
@@ -50,6 +53,16 @@ void	ft_player_move(t_game *game, int dx, int dy)
 	{
 		game->map[new_y][new_x] = '0';
 		game->col_remaining--;
+		while (i < game->images.collectible_img->count)
+		{
+			inst = &game->images.collectible_img->instances[i];
+			if (inst->x == new_x * 64 && inst->y == new_y * 64)
+			{
+				inst->enabled = false;
+				break;
+			}
+			i++;
+		}
 	}
 	if (tile == 'E')
 	{

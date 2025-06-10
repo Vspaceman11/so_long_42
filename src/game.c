@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:26:21 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/09 17:42:23 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:22:16 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_game_init(t_game *game)
 {
 	u_int32_t	idx;
 
-	game->map = ft_read_map("maps/map1.ber");
+	game->map = ft_read_map("maps/test.ber");
 	if (!game->map || ft_validate_map(game->map))
 		exit(EXIT_FAILURE);
 	ft_map_size(game);
@@ -24,6 +24,9 @@ void	ft_game_init(t_game *game)
 	game->mlx = mlx_init(game->map_col * 256, game->map_row * 64, "so_long", true);
 	if (!game->mlx)
 		exit(EXIT_FAILURE);
+	game->frame_count = 0;
+	game->input_cooldown = 10;
+	game->col_remaining = ft_count_collectibles(game->map);
 
 	game->textures.floor_texture = mlx_load_png("textures/png/floor/floor.png");
 	game->textures.wall_texture = mlx_load_png("textures/png/wall/wall.png");

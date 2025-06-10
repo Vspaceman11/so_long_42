@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:47:46 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/09 17:41:36 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:23:55 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ typedef struct s_game
 	int				player_moves;
 	int				player_instance_idx;
 	int				col_remaining;
+	int				frame_count;
+	int				input_cooldown;
 }	t_game;
 
 // ========== FUNCTION PROTOTYPES ==========
@@ -87,13 +89,14 @@ char	**ft_read_map(const char *file);
 char	*ft_read_line_map(int fd);
 int		ft_line_counter(const char *file);
 int		ft_validate_map(char **map);
+void	ft_map_size(t_game *game);
+
+// map_utils.c
 int		ft_is_valid_rectangular(char **map);
 int		ft_is_surrended_by_walls(char **map);
 int		ft_has_valid_characters(char **map);
 int		ft_has_required_elements(char **map);
-void	ft_map_size(t_game *game);
-
-
+int		ft_count_collectibles(char **map);
 
 // flood_fill.c
 void	ft_flood_fill(char **map, int row, int col);

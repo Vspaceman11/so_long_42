@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:56:07 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/09 14:48:19 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/10 13:24:07 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,21 +105,24 @@ int	ft_has_required_elements(char **map)
 	return (p_count == 1 && e_count == 1 && c_count >= 1);
 }
 
-void	ft_map_size(t_game *game)
+int	ft_count_collectibles(char **map)
 {
+	int	count;
 	int	y;
 	int	x;
 
+	count = 0;
 	y = 0;
-	while (game->map[y])
+	while (map[y])
 	{
 		x = 0;
-		while (game->map[y][x])
+		while (map[y][x])
 		{
+			if (map[y][x] == 'C')
+				count++;
 			x++;
-			game->map_row = x;
 		}
 		y++;
-		game->map_col = y;
 	}
+	return (count);
 }
