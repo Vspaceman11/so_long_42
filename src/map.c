@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:38:03 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/10 13:17:17 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:15:53 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,19 +94,11 @@ char	**ft_read_map(const char *file)
 
 void	ft_map_size(t_game *game)
 {
-	int	y;
-	int	x;
+	int	row;
 
-	y = 0;
-	while (game->map[y])
-	{
-		x = 0;
-		while (game->map[y][x])
-		{
-			x++;
-			game->map_row = x;
-		}
-		y++;
-		game->map_col = y;
-	}
+	row = 0;
+	while (game->map[row])
+		row++;
+	game->map_row = row;
+	game->map_col = ft_strlen(game->map[0]);
 }
