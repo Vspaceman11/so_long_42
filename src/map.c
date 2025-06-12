@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:38:03 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/11 16:15:53 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:49:48 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_validate_map(char **map)
 	if (!ft_has_valid_characters(map))
 		return (perror("Map has invalid characters "), 1);
 	if (!ft_has_required_elements(map))
-		return (perror("Map does not have required elements or more then 1"), 1);
+		return (perror("Map doesn't have required elements or more then 1"), 1);
 	if (!ft_is_path_valid(map))
 		return (perror("Cannot reach exit or collectibles "), 1);
 	return (0);

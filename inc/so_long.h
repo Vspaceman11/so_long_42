@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:47:46 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/11 17:35:15 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:51:35 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_game
 	int				player_x;
 	int				player_y;
 	int				player_moves;
-	int				player_instance_idx;
+	int				player_inst_idx;
 	int				col_remaining;
 	int				frame_count;
 	int				input_cooldown;

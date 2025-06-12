@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:59:26 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/11 17:40:55 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:53:38 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	handle_exit(t_game *game)
 
 void	ft_handle_input(void *param)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)param;
 	game->frame_count++;
@@ -68,79 +68,29 @@ void	ft_handle_input(void *param)
 
 void	ft_player_move(t_game *game, int dx, int dy)
 {
-	int		new_x;
-	int		new_y;
+	int		n_x;
+	int		n_y;
 	char	tile;
 
-	new_x = game->player_x + dx;
-	new_y = game->player_y + dy;
-	if (new_x < 0 || new_y < 0 || new_y >= game->map_row || new_x >= game->map_col)
+	n_x = game->player_x + dx;
+	n_y = game->player_y + dy;
+	if (n_x < 0 || n_y < 0 || n_y >= game->map_row || n_x >= game->map_col)
 		return ;
-	tile = game->map[new_y][new_x];
+	tile = game->map[n_y][n_x];
 	if (tile == '1')
 		return ;
 	if (tile == 'C')
-		handle_collectible(game, new_x, new_y);
+		handle_collectible(game, n_x, n_y);
 	if (tile == 'E')
 	{
 		handle_exit(game);
 		if (game->col_remaining != 0)
 			return ;
 	}
-	game->player_x = new_x;
-	game->player_y = new_y;
-	game->images.player_img->instances[game->player_instance_idx].x = new_x * 64;
-	game->images.player_img->instances[game->player_instance_idx].y = new_y * 64;
+	game->player_x = n_x;
+	game->player_y = n_y;
+	game->images.player_img->instances[game->player_inst_idx].x = n_x * 64;
+	game->images.player_img->instances[game->player_inst_idx].y = n_y * 64;
 	game->player_moves++;
 	ft_printf("Moves: %d\n", game->player_moves);
 }
-
-// void	ft_player_move(t_game *game, int dx, int dy)
-// {
-// 	int				new_x;
-// 	int				new_y;
-// 	char			tile;
-// 	mlx_instance_t	*inst;
-// 	size_t			i;
-
-// 	new_x = game->player_x + dx;
-// 	new_y = game->player_y + dy;
-// 	if (new_x < 0 || new_y < 0 || new_y >= game->map_row || new_x >= game->map_col)
-// 		return;
-// 	i = 0;
-// 	tile = game->map[new_y][new_x];
-// 	if (tile == '1')
-// 		return ;
-// 	if (tile == 'C')
-// 	{
-// 		game->map[new_y][new_x] = '0';
-// 		game->col_remaining--;
-// 		while (i < game->images.collectible_img->count)
-// 		{
-// 			inst = &game->images.collectible_img->instances[i];
-// 			if (inst->x == new_x * 64 && inst->y == new_y * 64)
-// 			{
-// 				inst->enabled = false;
-// 				break;
-// 			}
-// 			i++;
-// 		}
-// 	}
-// 	if (tile == 'E')
-// 	{
-// 		if (game->col_remaining == 0)
-// 		{
-// 			ft_printf("You win in %d moves!\n", game->player_moves + 1);
-// 			mlx_close_window(game->mlx);
-// 			return ;
-// 		}
-// 		else
-// 			return ;
-// 	}
-// 	game->player_x = new_x;
-// 	game->player_y = new_y;
-// 	game->images.player_img->instances[game->player_instance_idx].x = new_x * 64;
-// 	game->images.player_img->instances[game->player_instance_idx].y = new_y * 64;
-// 	game->player_moves++;
-// 	ft_printf("Moves: %d\n", game->player_moves);
-// }

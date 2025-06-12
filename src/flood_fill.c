@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:36:43 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/05/23 14:59:04 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:46:04 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,17 @@ char	**ft_copy_map(char **map)
 	{
 		map_cpy[i] = ft_strdup(map[i]);
 		if (!map_cpy[i])
-			{
-				while (--i >= 0)
-					free(map_cpy[i]);
-				free(map_cpy);
-				return (NULL);
-			}
+		{
+			while (--i >= 0)
+				free(map_cpy[i]);
+			free(map_cpy);
+			return (NULL);
+		}
 		i++;
 	}
 	return (map_cpy);
 }
+
 void	ft_free_map(char **map)
 {
 	int	i;
@@ -51,7 +52,6 @@ void	ft_free_map(char **map)
 	}
 	free(map);
 }
-
 
 void	ft_flood_fill(char **map, int row, int col)
 {
