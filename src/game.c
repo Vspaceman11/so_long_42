@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:26:21 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 10:47:46 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:55:18 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	ft_game_map_init(t_game *game)
 {
-	game->map = ft_read_map("maps/test2.ber");
-	if (!game->map || ft_validate_map(game->map))
-		exit(EXIT_FAILURE);
 	ft_map_size(game);
-	game->mlx = mlx_init(game->map_col * 256,
-			game->map_row * 64, "so_long", true);
+	game->mlx = mlx_init(game->map_col * TILE_SIZE,
+			game->map_row * TILE_SIZE, "so_long", true);
 	if (!game->mlx)
 		exit(EXIT_FAILURE);
 	game->frame_count = 0;
@@ -29,11 +26,11 @@ void	ft_game_map_init(t_game *game)
 
 void	ft_textures_load(t_game *game)
 {
-	game->textures.floor_tx = mlx_load_png("textures/png/floor/floor.png");
-	game->textures.wall_tx = mlx_load_png("textures/png/wall/wall.png");
-	game->textures.player_tx = mlx_load_png("textures/png/player/player.png");
-	game->textures.coll_tx = mlx_load_png("textures/png/col/col.png");
-	game->textures.exit_tx = mlx_load_png("textures/png/exit/exit_o.png");
+	game->textures.floor_tx = mlx_load_png("textures/floor/floor.png");
+	game->textures.wall_tx = mlx_load_png("textures/wall/wall.png");
+	game->textures.player_tx = mlx_load_png("textures/player/player.png");
+	game->textures.coll_tx = mlx_load_png("textures/col/col.png");
+	game->textures.exit_tx = mlx_load_png("textures/exit/exit_o.png");
 	if (!game->textures.floor_tx || !game->textures.wall_tx
 		|| !game->textures.player_tx || !game->textures.coll_tx
 		|| !game->textures.exit_tx)
@@ -71,8 +68,12 @@ void	ft_game_init(t_game *game)
 	ft_images_create(game);
 	ft_map_render(game);
 
+
 	mlx_loop_hook(game->mlx, ft_handle_input, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
+	ft_free_and_exit(game);
+	ft_free_map(game->map);
+	free(game);
 	exit(EXIT_SUCCESS);
 }

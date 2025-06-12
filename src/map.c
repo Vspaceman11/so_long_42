@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:38:03 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 10:49:48 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:11:24 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_line_counter(const char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (perror("Cannot read the file."), 1);
+		return (-1);
 	lines_count = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -73,12 +73,14 @@ char	**ft_read_map(const char *file)
 	char	**map;
 
 	line_counts = ft_line_counter(file);
+	if (line_counts < 1)
+		return (NULL);
 	map = malloc(sizeof(char *) * (line_counts + 1));
 	if (!map)
-		return (perror("Malloc failed"), NULL);
+		return (NULL);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (perror("Cannot read the file."), NULL);
+		return (NULL);
 	row = 0;
 	while (row < line_counts)
 	{

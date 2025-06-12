@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:24:49 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 10:51:44 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:00:57 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,13 @@ void	ft_map_render(t_game *game)
 		}
 		y++;
 	}
+}
+
+void	ft_free_and_exit(t_game *game)
+{
+	mlx_delete_image(game->mlx, game->images.wall_img);
+	mlx_delete_image(game->mlx, game->images.floor_img);
+	mlx_delete_image(game->mlx, game->images.coll_img);
+	mlx_delete_image(game->mlx, game->images.player_img);
+	mlx_delete_image(game->mlx, game->images.exit_img);
 }

@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:52:55 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 10:48:53 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:02:19 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 #include <stdlib.h>
 #include "so_long.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_game	*game;
-	char	**map;
 
-	game = ft_calloc(1, sizeof(t_game));
-	map = ft_read_map("maps/test2.ber");
-	if (!map)
+	if (argc == 2)
 	{
-		fprintf(stderr, "Failed to read map.\n");
-		return (1);
+		game = ft_calloc(1, sizeof(t_game));
+		if (!game)
+			return (perror("Memory allocation failed\n"), 1);
+		game->map = ft_read_map(argv[1]);
+		if (!game->map)
+			return (perror("Failed to read map.\n"), free(game), 1);
+		if (ft_validate_map(game->map))
+			return (free(game), 1);
+		ft_game_init(game);
+		return (0);
 	}
-	if (ft_validate_map(map))
-	{
-		return (1);
-	}
-	ft_game_init(game);
-	return (0);
+	else
+		return (perror("Usage: ./so_long <map_file.ber>\n"), 1);
 }

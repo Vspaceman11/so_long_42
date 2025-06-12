@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:47:46 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 10:51:35 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:01:08 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdio.h>
 
 // ========== DEFINES ==========
-# define TILE_SIZE 16
+# define TILE_SIZE 64
 # define WIDTH 1024
 # define HEIGHT 1024
 
@@ -84,6 +84,8 @@ int		ft_count_collectibles(char **map);
 void	ft_flood_fill(char **map, int row, int col);
 void	ft_free_map(char **map);
 char	**ft_copy_map(char **map);
+
+// floo_fill_utils.c
 int		ft_is_path_valid(char **map);
 int		ft_check_remaining(char **map);
 int		ft_find_player(char **map, int *x, int *y);
@@ -94,9 +96,6 @@ void	ft_game_map_init(t_game *game);
 void	ft_textures_load(t_game *game);
 void	ft_images_create(t_game *game);
 
-// void	ft_load_textures(t_game *game);
-// void	ft_hook_controls(t_game *game);
-
 // input.c
 void	ft_handle_input(void *param);
 void	ft_player_move(t_game *game, int dx, int dy);
@@ -106,9 +105,6 @@ void	ft_place_basic_tiles(t_game *game, char tile, int x, int y);
 void	ft_place_special_tiles(t_game *game, char tile, int x, int y);
 void	ft_place_tile(t_game *game, char tile, int x, int y);
 void	ft_map_render(t_game *game);
-
-// utils.c (если есть)
-// void	print_error(const char *msg);
-// void	free_split(char **split);
+void	ft_free_and_exit(t_game *game);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:59:26 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 10:53:38 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/12 13:57:07 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	handle_collectible(t_game *game, int x, int y)
+static void	ft_handle_collectible(t_game *game, int x, int y)
 {
 	size_t			i;
 	mlx_instance_t	*inst;
@@ -29,15 +29,6 @@ static void	handle_collectible(t_game *game, int x, int y)
 			break ;
 		}
 		i++;
-	}
-}
-
-static void	handle_exit(t_game *game)
-{
-	if (game->col_remaining == 0)
-	{
-		ft_printf("You win in %d moves!\n", game->player_moves + 1);
-		mlx_close_window(game->mlx);
 	}
 }
 
@@ -66,6 +57,17 @@ void	ft_handle_input(void *param)
 		ft_player_move(game, 1, 0);
 }
 
+static int	ft_check_exit_reached(t_game *game)
+{
+	if (game->col_remaining == 0)
+	{
+		ft_printf("You win in %d moves!\n", game->player_moves + 1);
+		mlx_close_window(game->mlx);
+		return (1);
+	}
+	return (0);
+}
+
 void	ft_player_move(t_game *game, int dx, int dy)
 {
 	int		n_x;
@@ -80,13 +82,9 @@ void	ft_player_move(t_game *game, int dx, int dy)
 	if (tile == '1')
 		return ;
 	if (tile == 'C')
-		handle_collectible(game, n_x, n_y);
-	if (tile == 'E')
-	{
-		handle_exit(game);
-		if (game->col_remaining != 0)
-			return ;
-	}
+		ft_handle_collectible(game, n_x, n_y);
+	if (tile == 'E' && ft_check_exit_reached(game))
+		return ;
 	game->player_x = n_x;
 	game->player_y = n_y;
 	game->images.player_img->instances[game->player_inst_idx].x = n_x * 64;
