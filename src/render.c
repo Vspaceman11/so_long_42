@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:24:49 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 15:00:57 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:15:42 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_place_basic_tiles(t_game *game, char tile, int x, int y)
 			game->images.floor_img, x * 64, y * 64);
 	mlx_resize_image(game->images.floor_img, 64, 64);
 	game->images.floor_img->instances[idx].z = 0;
-
 	if (tile == '1')
 	{
 		idx = mlx_image_to_window(game->mlx,
@@ -82,13 +81,4 @@ void	ft_map_render(t_game *game)
 		}
 		y++;
 	}
-}
-
-void	ft_free_and_exit(t_game *game)
-{
-	mlx_delete_image(game->mlx, game->images.wall_img);
-	mlx_delete_image(game->mlx, game->images.floor_img);
-	mlx_delete_image(game->mlx, game->images.coll_img);
-	mlx_delete_image(game->mlx, game->images.player_img);
-	mlx_delete_image(game->mlx, game->images.exit_img);
 }

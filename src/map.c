@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:38:03 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 14:11:24 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:49:38 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ char	**ft_read_map(const char *file)
 		return (NULL);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (free(map), NULL);
 	row = 0;
 	while (row < line_counts)
 	{
 		map[row] = ft_read_line_map(fd);
 		if (!map[row])
-			return (perror("Trim failed"), NULL);
+			return (ft_free_map(map), perror("Trim failed"), NULL);
 		row++;
 	}
 	map[row] = NULL;

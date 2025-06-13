@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:36:43 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 10:46:04 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:15:24 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_flood_fill(char **map, int row, int col)
 	if (map[row][col] == '1' || map[row][col] == 'F')
 		return ;
 	map[row][col] = 'F';
-
 	ft_flood_fill(map, row + 1, col);
 	ft_flood_fill(map, row - 1, col);
 	ft_flood_fill(map, row, col + 1);

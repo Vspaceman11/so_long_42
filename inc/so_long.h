@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:47:46 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 15:01:08 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/13 14:54:35 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,10 @@ void	ft_place_special_tiles(t_game *game, char tile, int x, int y);
 void	ft_place_tile(t_game *game, char tile, int x, int y);
 void	ft_map_render(t_game *game);
 void	ft_free_and_exit(t_game *game);
+
+// exit.c
+void	ft_free_images(t_game *game);
+void	ft_exit_game(t_game *game);
+void	ft_hook_close(void *param);
 
 #endif

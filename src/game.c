@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:26:21 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 14:55:18 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:15:33 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,7 @@ void	ft_game_init(t_game *game)
 	ft_textures_load(game);
 	ft_images_create(game);
 	ft_map_render(game);
-
-
+	mlx_close_hook(game->mlx, ft_hook_close, game);
 	mlx_loop_hook(game->mlx, ft_handle_input, game);
 	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
-	ft_free_and_exit(game);
-	ft_free_map(game->map);
-	free(game);
-	exit(EXIT_SUCCESS);
 }
