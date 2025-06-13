@@ -6,12 +6,22 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:59:26 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/12 13:57:07 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:39:28 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Handle collectible pickup at given map coordinates.
+ *
+ * Updates the map cell to '0' (empty), decreases collectibles count,
+ * and disables the corresponding collectible image instance to hide it.
+ *
+ * @param game Pointer to the game state structure.
+ * @param x X-coordinate on the map.
+ * @param y Y-coordinate on the map.
+ */
 static void	ft_handle_collectible(t_game *game, int x, int y)
 {
 	size_t			i;
@@ -32,6 +42,15 @@ static void	ft_handle_collectible(t_game *game, int x, int y)
 	}
 }
 
+/**
+ * @brief Handle player input with frame-based cooldown.
+ *
+ * Increments frame counter and processes input only when cooldown expires.
+ * Supports movement keys (W/A/S/D or arrow keys) and Escape key to close.
+ * Calls ft_player_move with direction offsets based on input.
+ *
+ * @param param Pointer to the game structure.
+ */
 void	ft_handle_input(void *param)
 {
 	t_game	*game;
@@ -57,6 +76,15 @@ void	ft_handle_input(void *param)
 		ft_player_move(game, 1, 0);
 }
 
+/**
+ * @brief Check if the player reached the exit with all collectibles collected.
+ *
+ * If no collectibles remain, print a victory message, close the window,
+ * and return 1 to indicate game end. Otherwise, return 0.
+ *
+ * @param game Pointer to the game structure.
+ * @return int 1 if exit condition met, 0 otherwise.
+ */
 static int	ft_check_exit_reached(t_game *game)
 {
 	if (game->col_remaining == 0)
@@ -68,6 +96,17 @@ static int	ft_check_exit_reached(t_game *game)
 	return (0);
 }
 
+/**
+ * @brief Move the player by given offsets if the move is valid.
+ *
+ * Checks if the new position is inside map boundaries and not a wall.
+ * Handles collectible pick-up and exit conditions.
+ * Updates player position, image coordinates, and move count.
+ *
+ * @param game Pointer to the game structure.
+ * @param dx   Offset in the x-direction (columns).
+ * @param dy   Offset in the y-direction (rows).
+ */
 void	ft_player_move(t_game *game, int dx, int dy)
 {
 	int		n_x;

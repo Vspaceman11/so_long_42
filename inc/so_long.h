@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:47:46 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/13 14:54:35 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:57:57 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 // ========== DEFINES ==========
 # define TILE_SIZE 64
-# define WIDTH 1024
-# define HEIGHT 1024
 
 // ========== STRUCTURES ==========
 

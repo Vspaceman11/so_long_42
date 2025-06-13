@@ -6,12 +6,21 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:56:07 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/10 13:24:07 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:19:19 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Checks if the map is a valid rectangle.
+ *
+ * This function verifies that all rows in the map have the same length as the
+ * first row, ensuring the map is rectangular.
+ *
+ * @param map The 2D array of characters representing the map.
+ * @return 1 if the map is rectangular, 0 otherwise.
+ */
 int	ft_is_valid_rectangular(char **map)
 {
 	size_t	width;
@@ -28,6 +37,15 @@ int	ft_is_valid_rectangular(char **map)
 	return (1);
 }
 
+/**
+ * @brief Checks if the map is surrounded by walls ('1').
+ *
+ * This function verifies that the first and last rows, as well as the first
+ * and last columns of the map, consist entirely of wall characters ('1').
+ *
+ * @param map The 2D array of characters representing the map.
+ * @return 1 if the map is properly surrounded by walls, 0 otherwise.
+ */
 int	ft_is_surrended_by_walls(char **map)
 {
 	int	width;
@@ -55,6 +73,15 @@ int	ft_is_surrended_by_walls(char **map)
 	return (1);
 }
 
+/**
+ * @brief Checks if the map contains only valid characters.
+ *
+ * Valid characters are: '0' (floor), '1' (wall), 'P' (player),
+ * 'E' (exit), 'C' (collectible), and '\n' (newline).
+ *
+ * @param map The 2D array of characters representing the map.
+ * @return 1 if all characters are valid, 0 otherwise.
+ */
 int	ft_has_valid_characters(char **map)
 {
 	int	i;
@@ -77,6 +104,15 @@ int	ft_has_valid_characters(char **map)
 	return (1);
 }
 
+/**
+ * @brief Checks if the map contains required elements.
+ *
+ * The map must contain exactly one player ('P'),
+ * exactly one exit ('E'), and at least one collectible ('C').
+ *
+ * @param map The 2D array of characters representing the map.
+ * @return 1 if the conditions are met, 0 otherwise.
+ */
 int	ft_has_required_elements(char **map)
 {
 	int	i;
@@ -105,6 +141,15 @@ int	ft_has_required_elements(char **map)
 	return (p_count == 1 && e_count == 1 && c_count >= 1);
 }
 
+/**
+ * @brief Counts the number of collectibles on the map.
+ *
+ * Iterates over the entire map and counts how many 'C'
+ * characters (collectibles) are present.
+ *
+ * @param map The 2D array of characters representing the map.
+ * @return The total count of collectibles found.
+ */
 int	ft_count_collectibles(char **map)
 {
 	int	count;

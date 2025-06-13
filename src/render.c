@@ -6,12 +6,24 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:24:49 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/13 15:15:42 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:42:03 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Place basic tile images on the window at given map coordinates.
+ *
+ * Places a floor tile on all coordinates. If tile is a wall ('1'),
+ * places a wall tile on top. If tile is a collectible ('C'), places
+ * collectible image on top of the floor tile.
+ *
+ * @param game Pointer to the game structure.
+ * @param tile Character representing the tile type.
+ * @param x X-coordinate (column) on the map.
+ * @param y Y-coordinate (row) on the map.
+ */
 void	ft_place_basic_tiles(t_game *game, char tile, int x, int y)
 {
 	u_int32_t	idx;
@@ -36,6 +48,17 @@ void	ft_place_basic_tiles(t_game *game, char tile, int x, int y)
 	}
 }
 
+/**
+ * @brief Place special tile images for player and exit on the map.
+ *
+ * If tile is 'P', places player image, sets player position and instance.
+ * If tile is 'E', places exit image on the map.
+ *
+ * @param game Pointer to the game structure.
+ * @param tile Character representing the tile type ('P' or 'E').
+ * @param x X-coordinate (column) on the map.
+ * @param y Y-coordinate (row) on the map.
+ */
 void	ft_place_special_tiles(t_game *game, char tile, int x, int y)
 {
 	u_int32_t	idx;
@@ -59,12 +82,31 @@ void	ft_place_special_tiles(t_game *game, char tile, int x, int y)
 	}
 }
 
+/**
+ * @brief Place a tile on the map by delegating to helper functions.
+ *
+ * Calls functions to place basic tiles (floor, wall, collectibles) and
+ * special tiles (player, exit) at given map coordinates.
+ *
+ * @param game Pointer to the game structure.
+ * @param tile Character representing the tile type.
+ * @param x X-coordinate (column) on the map.
+ * @param y Y-coordinate (row) on the map.
+ */
 void	ft_place_tile(t_game *game, char tile, int x, int y)
 {
 	ft_place_basic_tiles(game, tile, x, y);
 	ft_place_special_tiles(game, tile, x, y);
 }
 
+/**
+ * @brief Render the entire game map by placing each tile on the window.
+ *
+ * Iterates through each row and column of the map array and places
+ * the corresponding tile image at the correct position.
+ *
+ * @param game Pointer to the game structure containing the map.
+ */
 void	ft_map_render(t_game *game)
 {
 	int	y;
