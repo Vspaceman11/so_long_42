@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:59:26 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/13 16:39:28 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:10:46 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,36 +43,38 @@ static void	ft_handle_collectible(t_game *game, int x, int y)
 }
 
 /**
- * @brief Handle player input with frame-based cooldown.
+ * @brief Handles a single key press event to control player movement or exit.
  *
- * Increments frame counter and processes input only when cooldown expires.
- * Supports movement keys (W/A/S/D or arrow keys) and Escape key to close.
- * Calls ft_player_move with direction offsets based on input.
+ * This function is called on key events. It only reacts to actual key presses
+ * (ignores key hold and release events). Based on the key pressed, it moves
+ * the player character in one of the four cardinal directions or exits the game.
  *
- * @param param Pointer to the game structure.
+ * Supported keys:
+ * - W / Up Arrow: Move up
+ * - S / Down Arrow: Move down
+ * - A / Left Arrow: Move left
+ * - D / Right Arrow: Move right
+ * - Escape: Exit the game
+ *
+ * @param keydata Contains the key pressed and its action type.
+ * @param param Pointer to the game structure, passed from the event hook.
  */
-void	ft_handle_input(void *param)
+void	ft_handle_input(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
-	game->frame_count++;
-	if (game->frame_count < game->input_cooldown)
+	if (keydata.action != MLX_PRESS)
 		return ;
-	game->frame_count = 0;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(game->mlx);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_W)
-		|| mlx_is_key_down(game->mlx, MLX_KEY_UP))
+	if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 		ft_player_move(game, 0, -1);
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_S)
-		|| mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
+	if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
 		ft_player_move(game, 0, 1);
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_A)
-		|| mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+	if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
 		ft_player_move(game, -1, 0);
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_D)
-		|| mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+	if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		ft_player_move(game, 1, 0);
 }
 

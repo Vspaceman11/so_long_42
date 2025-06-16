@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:47:46 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/13 15:57:57 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:11:42 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ typedef struct s_game
 	int				player_moves;
 	int				player_inst_idx;
 	int				col_remaining;
-	int				frame_count;
-	int				input_cooldown;
 }	t_game;
 
 // ========== FUNCTION PROTOTYPES ==========
@@ -96,7 +94,7 @@ void	ft_textures_load(t_game *game);
 void	ft_images_create(t_game *game);
 
 // input.c
-void	ft_handle_input(void *param);
+void	ft_handle_input(mlx_key_data_t keydata, void *param);
 void	ft_player_move(t_game *game, int dx, int dy);
 
 // render.c

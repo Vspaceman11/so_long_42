@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:52:55 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/13 16:09:48 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/16 14:29:22 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,16 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
+		if (ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4], ".ber", 4) != 0)
+			return (perror("Map not in a .ber format"), 1);
 		game = ft_calloc(1, sizeof(t_game));
 		if (!game)
 			return (perror("Memory allocation failed"), 1);
 		game->map = ft_read_map(argv[1]);
 		if (!game->map)
 		{
-			ft_free_map(game->map);
+			if (game->map)
+				ft_free_map(game->map);
 			free(game);
 			return (perror("Failed to read map."), 1);
 		}
