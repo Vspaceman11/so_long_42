@@ -4,7 +4,7 @@ A simple 2D tile-based game written in C using the [MLX42](https://github.com/co
 
 ## 📸 Screenshots
 
-![Gameplay Screenshot](assets/screenshot.png)
+![Gameplay Screenshot](assets/game.png)
 
 ## 🗂️ Project Structure
 
