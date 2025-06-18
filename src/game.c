@@ -6,7 +6,7 @@
 /*   By: vpushkar <vpushkar@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:26:21 by vpushkar          #+#    #+#             */
-/*   Updated: 2025/06/16 15:11:09 by vpushkar         ###   ########.fr       */
+/*   Updated: 2025/06/18 13:08:43 by vpushkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void	ft_game_map_init(t_game *game)
 	game->mlx = mlx_init(game->map_col * TILE_SIZE,
 			game->map_row * TILE_SIZE, "so_long", true);
 	if (!game->mlx)
+	{
+		ft_free_map(game->map);
+		free(game);
 		exit(EXIT_FAILURE);
+	}
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->col_remaining = ft_count_collectibles(game->map);
 }
